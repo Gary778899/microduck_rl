@@ -35,7 +35,7 @@ from copy import deepcopy
 # until SYMMETRY_CFG gets rewritten for the new obs structure.
 ENABLE_SYMMETRY = False
 
-# ── Domain randomisation toggles (matched to the velocity env) ────────────────
+# ── Domain randomization toggles (matched to the velocity env) ────────────────
 ENABLE_COM_RANDOMIZATION             = True
 ENABLE_HEAD_COM_RANDOMIZATION        = True
 ENABLE_KP_RANDOMIZATION              = False  # off, like velocity

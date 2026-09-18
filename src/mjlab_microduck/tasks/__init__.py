@@ -39,6 +39,10 @@ from .microduck_ground_pick_env_cfg import (
     make_microduck_ground_pick_env_cfg,
     MicroduckGroundPickRlCfg,
 )
+from .microduck_polite_bow_env_cfg import (
+    make_microduck_polite_bow_env_cfg,
+    MicroduckPoliteBowRlCfg,
+)
 from .microduck_ball_kick_env_cfg import (
     make_microduck_ball_kick_env_cfg,
     MicroduckBallKickRlCfg,
@@ -172,6 +176,23 @@ register_mjlab_task(
     runner_cls=MicroduckOnPolicyRunner,
 )
 
+# PoliteBow task — four-second stand -> bow -> stand gesture.
+register_mjlab_task(
+    task_id="Mjlab-PoliteBow-Flat-MicroDuck",
+    env_cfg=make_microduck_polite_bow_env_cfg(),
+    play_env_cfg=make_microduck_polite_bow_env_cfg(play=True),
+    rl_cfg=MicroduckPoliteBowRlCfg,
+    runner_cls=MicroduckOnPolicyRunner,
+)
+
+register_mjlab_task(
+    task_id="Mjlab-PoliteBow-Rough-MicroDuck",
+    env_cfg=make_microduck_polite_bow_env_cfg(rough=True),
+    play_env_cfg=make_microduck_polite_bow_env_cfg(play=True, rough=True),
+    rl_cfg=MicroduckPoliteBowRlCfg,
+    runner_cls=MicroduckOnPolicyRunner,
+)
+
 # Roller skate velocity task (passive-wheel model; historical task id kept)
 register_mjlab_task(
     task_id="Mjlab-Velocity-Flat-MicroDuck-Rollers",
@@ -264,6 +285,8 @@ _BACKLASH_TASKS = (
     ("Mjlab-SitStand-Rough-Backlash-MicroDuck", make_microduck_sitstand_env_cfg, {"rough": True}, MicroduckSitStandRlCfg, _BL_GROUNDCONTACT),
     ("Mjlab-GroundPick-Flat-Backlash-MicroDuck", make_microduck_ground_pick_env_cfg, {}, MicroduckGroundPickRlCfg, _BL_GROUNDCONTACT),
     ("Mjlab-GroundPick-Rough-Backlash-MicroDuck", make_microduck_ground_pick_env_cfg, {"rough": True}, MicroduckGroundPickRlCfg, _BL_GROUNDCONTACT),
+    ("Mjlab-PoliteBow-Flat-Backlash-MicroDuck", make_microduck_polite_bow_env_cfg, {}, MicroduckPoliteBowRlCfg, _BL_GROUNDCONTACT),
+    ("Mjlab-PoliteBow-Rough-Backlash-MicroDuck", make_microduck_polite_bow_env_cfg, {"rough": True}, MicroduckPoliteBowRlCfg, _BL_GROUNDCONTACT),
     ("Mjlab-BallKick-Flat-Backlash-MicroDuck", make_microduck_ball_kick_env_cfg, {}, MicroduckBallKickRlCfg, _BL_GROUNDCONTACT),
     ("Mjlab-Velocity-Flat-Backlash-MicroDuck-Rollers", make_microduck_velocity_rollers_env_cfg, {}, MicroduckRollersRlCfg, _BL_ROLLERS),
     ("Mjlab-Velocity-Swizzle-Backlash-MicroDuck", make_microduck_velocity_swizzle_env_cfg, {}, MicroduckSwizzleRlCfg, _BL_ROLLERS),
